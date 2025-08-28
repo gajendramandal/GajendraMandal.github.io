@@ -1,571 +1,503 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gajendra Mandal - Personal Website</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gajendra Mandal - Personal Website</title>
+  <style>
+    :root{
+      --bg-1: #667eea;
+      --bg-2: #764ba2;
+      --glass: rgba(255,255,255,0.95);
+      --muted: #555;
+      --accent: linear-gradient(135deg,var(--bg-1),var(--bg-2));
+      --card-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      --glass-border: rgba(255,255,255,0.18);
+    }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      line-height:1.5;
+      color:#333;
+      background: linear-gradient(135deg,var(--bg-1) 0%, var(--bg-2) 100%);
+      -webkit-font-smoothing:antialiased;
+      min-height:100vh;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    /* layout container */
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 20px;
+    }
 
-        header {
-            background: rgba(30, 34, 45, 0.85);
-            backdrop-filter: blur(8px);
-            box-shadow: 0 2px 16px rgba(30,34,45,0.12);
-            border-bottom: none;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    /* header / nav */
+    header{
+      background: rgba(30,34,45,0.85);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 16px rgba(30,34,45,0.12);
+      position:sticky;
+      top:0;
+      z-index:1200;
+    }
+    nav.container{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:0.9rem 0;
+    }
+    .logo{
+      color:#fff;
+      font-weight:700;
+      text-decoration:none;
+      font-size:1.15rem;
+      letter-spacing:0.2px;
+    }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
+    /* desktop nav links */
+    .nav-links{
+      display:flex;
+      gap:1.25rem;
+      list-style:none;
+      align-items:center;
+    }
+    .nav-links a{
+      color:#fff;
+      text-decoration:none;
+      font-weight:500;
+      transition:transform .2s ease, color .2s ease;
+    }
+    .nav-links a:hover{ color: #ffd700; transform: translateY(-2px); }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-        }
+    /* hamburger for small screens */
+    .hamburger{
+      display:none;
+      width:40px;
+      height:40px;
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:8px;
+      color:white;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+    }
+    .hamburger:focus{outline:2px solid rgba(255,255,255,0.12)}
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+    /* hero */
+    .hero{
+      padding:2rem 0 1rem;
+      text-align:center;
+      color:white;
+    }
+    .hero h1{ font-size:2.2rem; margin-bottom:0.4rem; letter-spacing:0.2px; }
+    .hero p{ font-size:1.05rem; opacity:0.95; margin-bottom:0.2rem; }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
+    /* profile section */
+    .profile-section{
+      background: var(--glass);
+      border-radius:20px;
+      padding:2.2rem;
+      margin:1.5rem 0;
+      box-shadow: var(--card-shadow);
+      border:1px solid var(--glass-border);
+    }
 
-        .nav-links a:hover {
-            color: #ffd700;
-            transform: translateY(-2px);
-        }
+    /* use grid for profile content */
+    .profile-content{
+      display:grid;
+      grid-template-columns: 300px 1fr;
+      gap:2rem;
+      align-items:center;
+    }
 
-        .hero {
-            padding: 2rem 0;
-            text-align: center;
-            color: white;
-        }
+    .profile-image{
+      width:100%;
+      max-width:300px;
+      height:auto;
+      border-radius:16px;
+      object-fit:cover;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      transition: transform .3s ease;
+      display:block;
+      margin:0 auto;
+    }
+    .profile-image:hover{ transform: scale(1.03) rotate(1.5deg); }
 
-        .profile-section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 2rem 0;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+    .profile-text h1{
+      font-size:2rem;
+      margin-bottom:0.6rem;
+      background: var(--accent);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .profile-text p{ color:var(--muted); font-size:1rem; margin-bottom:0.6rem; }
 
-        .profile-content {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 3rem;
-        }
+    /* social links */
+    .social-links{ display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:0.6rem; }
+    .social-link{
+      display:inline-flex; align-items:center; gap:0.6rem;
+      padding:0.45rem 0.9rem; border-radius:24px;
+      background: var(--accent); color:white; text-decoration:none;
+      font-weight:500; font-size:0.92rem; box-shadow: 0 6px 18px rgba(102,126,234,0.28);
+    }
+    .social-link img{ width:16px; height:16px; filter:brightness(0) invert(1) }
 
-        .profile-image {
-            width: 280px;
-            height: 280px;
-            border-radius: 20px;
-            object-fit: cover;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
+    /* stats grid */
+    .stats-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+      gap:1rem;
+      margin-top:1.25rem;
+    }
+    .stat-card{
+      background: var(--accent);
+      color:white;
+      padding:1.1rem;
+      border-radius:12px;
+      text-align:center;
+      box-shadow: 0 10px 30px rgba(102,126,234,0.25);
+    }
+    .stat-number{ font-size:1.6rem; font-weight:700; margin-bottom:0.2rem; }
+    .stat-label{ font-size:0.95rem; opacity:0.95; }
 
-        .profile-image:hover {
-            transform: scale(1.05) rotate(2deg);
-        }
+    /* journey / timeline */
+    .journey-section{
+      background: var(--glass);
+      border-radius:20px;
+      padding:2rem;
+      margin:1.5rem 0;
+      box-shadow: var(--card-shadow);
+      border:1px solid var(--glass-border);
+    }
+    .journey-section h2{
+      font-size:1.7rem; margin-bottom:1rem;
+      background:var(--accent); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
 
-        .profile-text h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #333;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    .timeline{
+      position:relative;
+      padding:0.5rem 0 0.5rem 0;
+      margin-top:0.5rem;
+    }
 
-        .profile-text p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: #555;
-        }
+    /* vertical line */
+    .timeline::before{
+      content:'';
+      position:absolute;
+      left:120px;
+      top:0;
+      bottom:0;
+      width:4px;
+      background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      border-radius:4px;
+    }
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
+    .timeline-item{
+      display:grid;
+      grid-template-columns: 140px 1fr;
+      gap:1rem;
+      margin-bottom:1.25rem;
+      position:relative;
+      align-items:start;
+    }
+    .timeline-item::before{
+      content:'';
+      position:absolute;
+      left:110px;
+      top:12px;
+      width:18px;height:18px;
+      background: linear-gradient(135deg,var(--bg-1),var(--bg-2));
+      border-radius:50%;
+      border:3px solid white;
+      box-shadow:0 0 0 4px rgba(102,126,234,0.18);
+    }
+    .timeline-date{
+      text-align:right;
+      color:var(--bg-1);
+      font-weight:700;
+      font-size:0.95rem;
+      padding-right:0.75rem;
+    }
+    .timeline-content{
+      background: rgba(102,126,234,0.04);
+      padding:0.9rem;
+      border-radius:12px;
+      border-left:4px solid var(--bg-1);
+      transition: all .25s ease;
+      color: #2d2d2d;
+      font-size:0.96rem;
+    }
+    .timeline-content:hover{ transform: translateX(6px); box-shadow: 0 8px 20px rgba(102,126,234,0.12); }
+    .timeline-content a{ color:var(--bg-1); text-decoration:none; font-weight:600; }
+    .timeline-content a:hover{ text-decoration:underline; }
 
-        .social-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
+    /* footer */
+    footer{
+      background: rgba(0,0,0,0.8);
+      color:white;
+      text-align:center;
+      padding:1.6rem 0;
+      margin-top:2rem;
+      font-size:0.95rem;
+    }
 
-        .social-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
-        }
+    /* floating decorative elements */
+    .floating-elements{
+      position:fixed; inset:0; pointer-events:none; z-index:0; overflow:visible;
+    }
+    .floating-element{
+      position:absolute;
+      background: rgba(255,255,255,0.06);
+      border-radius:50%;
+      animation: float 6s ease-in-out infinite;
+      will-change:transform;
+    }
+    @keyframes float{
+      0%,100%{ transform: translateY(0) rotate(0deg) }
+      50%{ transform: translateY(-20px) rotate(180deg) }
+    }
 
-        .social-link img {
-            width: 20px;
-            height: 20px;
-            filter: brightness(0) invert(1);
-        }
+    /* small screen styles */
+    @media (max-width: 900px){
+      .profile-content{ grid-template-columns: 1fr; text-align:center; }
+      .profile-text h1{ font-size:1.6rem }
+      .hero h1{ font-size:1.7rem }
+      .timeline::before{ left:40px }
+      .timeline-item{ grid-template-columns: 1fr; padding-left: 0; }
+      .timeline-item::before{ left:20px; top:14px; }
+      .timeline-date{ text-align:left; padding-right:0; margin-bottom:6px; }
+      .timeline-content{ margin-left: 40px; }
+      .nav-links{ display:none; }
+      .hamburger{ display:flex }
+    }
 
-        .journey-section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 2rem 0;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+    /* tiny phones */
+    @media (max-width: 480px){
+      .container{ padding:0 14px }
+      .profile-section{ padding:1.25rem }
+      .journey-section{ padding:1.25rem }
+      .hero h1{ font-size:1.45rem }
+      .hero p{ font-size:0.95rem }
+      .stat-number{ font-size:1.25rem }
+      .timeline-content{ font-size:0.9rem }
+    }
 
-        .journey-section h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    /* mobile nav panel when open */
+    .mobile-nav{
+      display:none;
+      position:fixed;
+      right:12px;
+      top:64px;
+      background: rgba(20,22,30,0.96);
+      border-radius:10px;
+      padding:12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      z-index:1300;
+      min-width:180px;
+    }
+    .mobile-nav a{ display:block; color:white; padding:8px 10px; text-decoration:none; border-radius:6px; margin-bottom:6px; font-weight:600 }
+    .mobile-nav a:hover{ background: rgba(255,255,255,0.04) }
 
-        .timeline {
-            position: relative;
-            padding: 1rem 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 100px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            display: grid;
-            grid-template-columns: 180px 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 90px;
-            top: 10px;
-            width: 20px;
-            height: 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
-        }
-
-        .timeline-date {
-            font-weight: bold;
-            color: #667eea;
-            font-size: 0.95rem;
-            text-align: right;
-            padding-right: 1rem;
-        }
-
-        .timeline-content {
-            background: rgba(102, 126, 234, 0.05);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            transform: translateX(10px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
-        }
-
-        .timeline-content a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .timeline-content a:hover {
-            text-decoration: underline;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px) rotate(2deg);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .skills-areas {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .skill-tag {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
-        }
-
-        .placeholder-note {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 10px;
-            padding: 1rem;
-            margin: 1rem 0;
-            color: #856404;
-            text-align: center;
-        }
-
-        footer {
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 4rem;
-        }
-
-        @media (max-width: 768px) {
-            .profile-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .timeline-item {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item::before {
-                left: 10px;
-            }
-
-            .timeline-date {
-                text-align: left;
-                padding-right: 0;
-            }
-
-            .social-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .nav-links {
-                display: none;
-            }
-        }
-
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .floating-element {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-    </style>
+    .mobile-nav.show{ display:block }
+  </style>
 </head>
 <body>
-    <div class="floating-elements">
-        <div class="floating-element" style="width: 60px; height: 60px; top: 10%; left: 10%; animation-delay: 0s;"></div>
-        <div class="floating-element" style="width: 80px; height: 80px; top: 20%; right: 15%; animation-delay: 2s;"></div>
-        <div class="floating-element" style="width: 40px; height: 40px; bottom: 30%; left: 20%; animation-delay: 4s;"></div>
-        <div class="floating-element" style="width: 100px; height: 100px; bottom: 10%; right: 10%; animation-delay: 1s;"></div>
-    </div>
+  <div class="floating-elements" aria-hidden="true">
+    <div class="floating-element" style="width:60px;height:60px;top:8%;left:8%;animation-delay:0s;"></div>
+    <div class="floating-element" style="width:80px;height:80px;top:20%;right:12%;animation-delay:2s;"></div>
+    <div class="floating-element" style="width:40px;height:40px;bottom:28%;left:20%;animation-delay:4s;"></div>
+    <div class="floating-element" style="width:100px;height:100px;bottom:8%;right:8%;animation-delay:1s;"></div>
+  </div>
 
-    <header>
-        <nav class="container">
-            <a href="index.html#home" class="logo">Gajendra Mandal</a>
-            <ul class="nav-links">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="skill.html">Skills</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="publications.html">Publications</a></li>
-                <li><a href="blogposts.html">Blogposts</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <nav class="container" role="navigation" aria-label="Main navigation">
+      <a class="logo" href="index.html#home">Gajendra Mandal</a>
 
-    <main class="container" id="home">
-        <section class="hero">
-            <h1 style="font-size: 2.2rem; margin-bottom: 0.5rem;">AI Researcher &amp; ML Engineer</h1>
-            <p style="font-size: 1.05rem; opacity: 0.9; margin-bottom: 0.5rem;">Machine Learning, Computer Vision, Data Science, AI-driven Solutions, End-to-End Project Development</p>
-        </section>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="skill.html">Skills</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="blogposts.html">Blogposts</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul>
 
-        <section class="profile-section" id="about">
-            <div class="profile-content">
-                <div>
-                    <img src="images/profile_photo.jpg" alt="Gajendra" class="profile-image">
-                </div>
-                <div class="profile-text">
-                    <h1>Gajendra Mandal</h1>
-                    <p>I am Gajendra Mandal, a final-year B.Tech (Hons.) Data Science student at CSVTU Bhilai with a solid foundation in computer science and hands-on experience in academic and research projects. During my internship at IIT Gandhinagar, I worked on AI-driven solutions, including thermal imaging–based respiration monitoring and applying vision–language models to thermal data. This strengthened my skills in machine learning, computer vision, and end-to-end project development. I aim to leverage these capabilities to tackle real-world challenges in data science and AI while contributing to innovative, impactful projects in a dynamic environment.</p>
-                    <div class="social-links" style="margin-top: 1rem; margin-bottom: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                        <a href="/files/Gajendra_resume.pdf" download class="social-link" style="padding: 0.4rem 0.8rem; font-size: 0.92rem; border-radius: 24px;">
-                            <img src="https://img.icons8.com/material-outlined/20/000000/download.png" alt="Download Resume" style="width: 16px; height: 16px;"> Resume
-                        </a>
-                        <a href="https://github.com/gajendramandal" target="_blank" class="social-link" style="padding: 0.4rem 0.8rem; font-size: 0.92rem; border-radius: 24px;">
-                            <img src="https://img.icons8.com/material-outlined/20/000000/github.png" alt="GitHub" style="width: 16px; height: 16px;"> GitHub
-                        </a>
-                        <a href="https://linkedin.com/in/gajendra-mandal" target="_blank" class="social-link" style="padding: 0.4rem 0.8rem; font-size: 0.92rem; border-radius: 24px;">
-                            <img src="https://img.icons8.com/material-outlined/20/000000/linkedin.png" alt="LinkedIn" style="width: 16px; height: 16px;"> LinkedIn
-                        </a>
-                        <a href="mailto:gajendramandal2003@gmail.com" class="social-link" style="padding: 0.4rem 0.8rem; font-size: 0.92rem; border-radius: 24px;">
-                            <img src="https://img.icons8.com/material-outlined/20/000000/email.png" alt="Email" style="width: 16px; height: 16px;"> Email
-                        </a>
-                        <span class="social-link" style="padding: 0.4rem 0.8rem; font-size: 0.92rem; border-radius: 24px;">+91-6264769759</span>
-                    </div>
-                </div>
-            </div>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">1</div>
-                    <div class="stat-label">Publication</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">2022-2026</div>
-                    <div class="stat-label">B.Tech(H) CSE(DS), CSVTU Bhilai</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">2025</div>
-                    <div class="stat-label">Research Intern, IIT Gandhinagar</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">5+</div>
-                    <div class="stat-label">Major Projects</div>
-                </div>
-            </div>
-        </section>
+      <button class="hamburger" id="hamburger" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle menu">
+        <!-- simple hamburger icon -->
+        <svg width="18" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
 
-        <section class="journey-section" id="journey">
-            <h2>My Journey So Far</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">2025-Present</div>
-                    <div class="timeline-content">
-                        <strong>Research Intern – Computer Vision, IIT Gandhinagar</strong><br>
-                        Developing thermal imaging–based respiration and sleep-apnea detection pipelines, YOLO-based nostril detection, and vision–language models for thermal data interpretation. Utilized Python, PyTorch, OpenCV, and Docker for image processing, model training, and deployment. Contributed to improved respiration signal extraction accuracy and dataset annotation automation for scalable healthcare AI research.
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2024</div>
-                    <div class="timeline-content">
-                        <strong>Bahikhata Project</strong><br>
-                        Developed Bahikhata: A platform to modernize record-keeping for due payments, replacing traditional pen-and-paper methods with a digital solution. Implemented a dynamic customer management system and designed a role-based access control mechanism using HTML, CSS, PHP, and JavaScript. Enhanced functionality with custom WordPress plugin development.
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2024</div>
-                    <div class="timeline-content">
-                        <strong>LILY - Desk Assistance</strong><br>
-                        Developed a smart desk assistant, Lily, to streamline productivity with advanced automation, natural language processing, and interactive features. Integrated Python, OpenAI API, and Wikipedia API for intelligent responses, task automation, and real-time information retrieval. Implemented interactive games and database management features.
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">2022-2026</div>
-                    <div class="timeline-content">
-                        <strong>B.Tech(H) CSE(DS), CSVTU Bhilai</strong><br>
-                        
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-date">Achievements</div>
-                    <div class="timeline-content">
-                        National-Level Data Analytics Hackathon (IIM Nagpur), IDC-2024 (NSS, New Delhi), Multiple Hackathons (Coding Club), 1st place Human Rights Day (NSS), Rajya Puraskar (Scouts and Guides)
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-date">Volunteering</div>
-                    <div class="timeline-content">
-                        Head Boy, National Service Scheme (NSS); Nominated for IDC-2024; Achieved B-Certificate (2023-24); Organized events and participated in National Integration Camp, one day camp, 2-unit camps.
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+      <div class="mobile-nav" id="mobileNav" role="menu" aria-hidden="true">
+        <a href="index.html#home" role="menuitem">Home</a>
+        <a href="skill.html" role="menuitem">Skills</a>
+        <a href="projects.html" role="menuitem">Projects</a>
+        <a href="publications.html" role="menuitem">Publications</a>
+        <a href="blogposts.html" role="menuitem">Blogposts</a>
+        <a href="gallery.html" role="menuitem">Gallery</a>
+      </div>
+    </nav>
+  </header>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Gajendra Mandal. All rights reserved.</p>
-            <p>Building data-driven solutions for a smarter future.</p>
+  <main class="container" id="home">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">AI Researcher &amp; ML Engineer</h1>
+      <p>Machine Learning, Computer Vision, Data Science, AI-driven Solutions, End-to-End Project Development</p>
+    </section>
+
+    <section class="profile-section" id="about" aria-labelledby="about-title">
+      <div class="profile-content">
+        <div>
+          <img src="images/profile_photo.jpg" alt="Gajendra Mandal" class="profile-image" />
         </div>
-    </footer>
+        <div class="profile-text">
+          <h1 id="about-title">Gajendra Mandal</h1>
+          <p>I am a final-year B.Tech (Hons.) Data Science student at CSVTU Bhilai with hands-on experience in machine learning, computer vision and research projects, including thermal-imaging respiration monitoring and vision-language work during an internship at IIT Gandhinagar.</p>
 
-    <script>
-        // Add smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+          <div class="social-links" aria-label="Contact and social links">
+            <a href="/files/Gajendra_resume.pdf" download class="social-link" title="Download Resume">
+              <img src="https://img.icons8.com/material-outlined/20/000000/download.png" alt="" aria-hidden="true"> Resume
+            </a>
+            <a href="https://github.com/gajendramandal" target="_blank" rel="noopener" class="social-link" title="GitHub">
+              <img src="https://img.icons8.com/material-outlined/20/000000/github.png" alt="" aria-hidden="true"> GitHub
+            </a>
+            <a href="https://linkedin.com/in/gajendra-mandal" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+              <img src="https://img.icons8.com/material-outlined/20/000000/linkedin.png" alt="" aria-hidden="true"> LinkedIn
+            </a>
+            <a href="mailto:gajendramandal2003@gmail.com" class="social-link" title="Email">
+              <img src="https://img.icons8.com/material-outlined/20/000000/email.png" alt="" aria-hidden="true"> Email
+            </a>
+            <a href="tel:+916264769759" class="social-link" style="padding: 0.4rem 0.8rem; font-size: 0.92rem; border-radius: 24px;">
+  +91-6264769759
+</a>
 
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+          </div>
+        </div>
+      </div>
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+      <div class="stats-grid" aria-hidden="false" style="margin-top:1rem;">
+        <div class="stat-card"><div class="stat-number">1</div><div class="stat-label">Publication</div></div>
+        <div class="stat-card"><div class="stat-number">2022-2026</div><div class="stat-label">B.Tech(H) CSE(DS), CSVTU Bhilai</div></div>
+        <div class="stat-card"><div class="stat-number">2025</div><div class="stat-label">Research Intern, IIT Gandhinagar</div></div>
+        <div class="stat-card"><div class="stat-number">5+</div><div class="stat-label">Major Projects</div></div>
+      </div>
+    </section>
 
-        // Observe timeline items
-        document.querySelectorAll('.timeline-item').forEach(item => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(30px)';
-            item.style.transition = 'all 0.6s ease';
-            observer.observe(item);
-        });
+    <section class="journey-section" id="journey" aria-labelledby="journey-title">
+      <h2 id="journey-title">My Journey So Far</h2>
 
-        // Add parallax effect to floating elements
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelectorAll('.floating-element');
-            
-            parallax.forEach((element, index) => {
-                const speed = (index + 1) * 0.5;
-                element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
-            });
-        });
+      <div class="timeline" aria-hidden="false">
+        <div class="timeline-item">
+          <div class="timeline-date">2025 - Present</div>
+          <div class="timeline-content">
+            <strong>Research Intern – Computer Vision, IIT Gandhinagar</strong><br>
+            Developing thermal imaging–based respiration and sleep-apnea detection pipelines, YOLO-based nostril detection, and vision–language models. Tools: Python, PyTorch, OpenCV, Docker.
+          </div>
+        </div>
 
-        // Add typing effect to hero text for 'AI Researcher & ML Engineer'
-        function typeWriter(element, text, speed = 80) {
-            let i = 0;
-            element.innerHTML = '';
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
+        <div class="timeline-item">
+          <div class="timeline-date">2024</div>
+          <div class="timeline-content">
+            <strong>Bahikhata Project</strong><br>
+            Built a digital platform for due payments. Stack: HTML, CSS, PHP, JS. Focus: role-based access, dynamic customer management.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2024</div>
+          <div class="timeline-content">
+            <strong>LILY - Desk Assistant</strong><br>
+            Smart desk assistant with NLP and automation using Python, OpenAI API and web integrations.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2022 - 2026</div>
+          <div class="timeline-content">
+            <strong>B.Tech (H) CSE (DS), CSVTU Bhilai</strong><br>
+            Coursework, projects and research in data science and machine learning.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Achievements</div>
+          <div class="timeline-content">
+            National-level hackathons, NSS awards, Rajya Puraskar, multiple college-level hack wins and event participation.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Gajendra Mandal. All rights reserved.</p>
+      <p>Building data-driven solutions for a smarter future.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling for in-page anchors (works for desktop & mobile)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // if mobile nav open, close after click
+          const mobileNav = document.getElementById('mobileNav');
+          if (mobileNav && mobileNav.classList.contains('show')) {
+            mobileNav.classList.remove('show');
+            document.getElementById('hamburger').setAttribute('aria-expanded','false');
+            document.getElementById('mobileNav').setAttribute('aria-hidden','true');
+          }
         }
+      });
+    });
 
-        window.addEventListener('load', () => {
-            const heroTitle = document.querySelector('.hero h1');
-            if (heroTitle) {
-                typeWriter(heroTitle, 'AI Researcher & ML Engineer', 80);
-            }
-        });
-    </script>
+    // Mobile nav toggle
+    (function(){
+      const btn = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobileNav');
+      btn && btn.addEventListener('click', function(){
+        const isOpen = mobileNav.classList.toggle('show');
+        btn.setAttribute('aria-expanded', String(isOpen));
+        mobileNav.setAttribute('aria-hidden', String(!isOpen));
+      });
+      // close mobile nav when clicking outside
+      document.addEventListener('click', (e) => {
+        const inside = e.target.closest('.mobile-nav') || e.target.closest('.hamburger');
+        if (!inside) {
+          mobileNav.classList.remove('show');
+          btn.setAttribute('aria-expanded','false');
+          mobileNav.setAttribute('aria-hidden','true');
+        }
+      });
+    })();
+
+    // simple scroll-based reveal for timeline items (lightweight)
+    const items = document.querySelectorAll('.timeline-item');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(ent => {
+        if (ent.isIntersecting) {
+          ent.target.style.opacity = 1;
+          ent.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    items.forEach(it => {
+      it.style.opacity = 0;
+      it.style.transform = 'translateY(18px)';
+      it.style.transition = 'all .6s cubic-bezier(.2,.8,.2,1)';
+      obs.observe(it);
+    });
+  </script>
 </body>
 </html>
