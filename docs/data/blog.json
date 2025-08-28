@@ -1,0 +1,23 @@
+
+[
+  {
+    "title": "What is Image",
+    "date": "2025-08-27",
+    "description": "What is Image",
+    "content": "More information will be posted here soon"
+  },
+  {
+    "title": "Why AI Is Important for Jobs",
+    "description": "Why AI Is Important for Jobs",
+    "date": "2025-08-27",
+    "markdown": "data/markdown-sample.md"
+  },
+  {
+    "title": "Understanding the concept of Channels in an Image",
+    "date": "2025-08-27",
+    "description": "Understanding the concept of Channels in an Image",
+    "externalUrl": "https://medium.com/featurepreneur/understanding-the-concept-of-channels-in-an-image-6d59d4dafaa9"
+  }
+]
+
+

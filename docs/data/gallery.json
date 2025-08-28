@@ -1,0 +1,35 @@
+[
+  
+  {
+    "image": "../images/campus.jpg",
+    "title": "IIT Gandhinagar's beautiful campus.",
+    "description": "The campus is very green and beautiful, and after the rain, it looks even more attractive and enjoyable.",
+    "date": "2025-03-10",
+    "category": "IIT Gandhinagar",
+    "location": "Gujarat"
+  },
+  {
+    "image": "../images/group_photo.jpeg", 
+    "title": "A group photo with Nipun Sir and all the lab members",
+    "description": " Everyone is gathered together, smiling warmly",
+    "date": "2025-01-10",
+    "category": "IIT Gandhinagar",
+    "location": "Gujarat"
+  },
+  {
+    "image": "../images/lal.jpg",
+    "title": "Lal Minar of IIT GN",
+    "description": "The Lal Minar at IIT Gandhinagar is a beautiful and fascinating structure",
+    "date": "2025-01-10",
+    "category": "IIT Gandhinagar",
+    "location": "Gujarat"
+  },
+  {
+    "image": "../images/robots.jpg", 
+    "title": "Off-Road Vehicle Prototype at IITGN",
+    "description": "Students at IIT Gandhinagar assemble a roll cage frame for an off-road buggy in a workshop",
+    "date": "2025-04-10",
+    "category": "IIT Gandhinagar",
+    "location": "Gujarat"
+  }
+]
